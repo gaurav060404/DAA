@@ -1,18 +1,13 @@
 public class naive {
     public static boolean algo(String text,String pattern){
-        String temp = "";
-        int len = 0;
-        for (int i = 0; i < text.length(); i++) {
-            for (int j = 0; j < pattern.length(); j++) {
-                if (text.charAt(i)!=pattern.charAt(j)) {
-                    len = 0;
-                    i = i-1;
+        for (int i = 0; i <= text.length()-pattern.length(); i++) {
+            int j;
+            for ( j = 0; j < pattern.length(); j++) {
+                if (text.charAt(i+j)!=pattern.charAt(j)) {
                     break;
-                }else{
-                    len++;
                 }
             }
-            if(len==pattern.length()){
+            if(j==pattern.length()){
                 return true;
             }
         }
@@ -20,7 +15,7 @@ public class naive {
     }
     public static void main(String[] args) {
         String text = "abcdabcabcdf";
-        String pattern = "abcdrr";
+        String pattern = "xys";
         System.out.println(algo(text,pattern));
     }
 }
