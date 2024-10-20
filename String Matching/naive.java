@@ -15,7 +15,7 @@ public class naive {
     }
     public static void main(String[] args) {
         String text = "abcdabcabcdf";
-        String pattern = "xys";
+        String pattern = "abc";
         System.out.println(algo(text,pattern));
     }
 }
