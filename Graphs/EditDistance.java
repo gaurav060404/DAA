@@ -14,7 +14,7 @@ public class EditDistance{
                 if (i == 0) {
                     dp[i][j] = j; // j insertions
                 }
-                // If str2 is empty, remove all characters of str1
+                // If str2 is empty, remove all characters of str1 
                 else if (j == 0) {
                     dp[i][j] = i; // i deletions
                 }
