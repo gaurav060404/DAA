@@ -31,4 +31,20 @@ public class BinarySearch1 {
 
         System.out.println();
     }
+
+    static int practice(int[] arr, int ele, int low, int high) {
+        int mid = low + (high - low) / 2;
+
+        while (low < high) {
+            if (ele == arr[mid]) {
+                return mid;
+            }
+            if (ele > arr[mid]) {
+                return practice(arr, ele, mid + 1, high);
+            } else {
+                return practice(arr, ele, low, mid - 1);
+            }
+        }
+        return -1;
+    }
 }

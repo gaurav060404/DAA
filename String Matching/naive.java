@@ -1,21 +1,23 @@
 public class naive {
-    public static boolean algo(String text,String pattern){
-        for (int i = 0; i <= text.length()-pattern.length(); i++) {
+    public static boolean algo(String text, String pattern) {
+        for (int i = 0; i <= text.length() - pattern.length(); i++) {
             int j;
-            for ( j = 0; j < pattern.length(); j++) {
-                if (text.charAt(i+j)!=pattern.charAt(j)) {
+            for (j = 0; j < pattern.length(); j++) {
+                if (text.charAt(i + j) != pattern.charAt(j)) {
                     break;
                 }
             }
-            if(j==pattern.length()){
+            if (j == pattern.length()) {
+                System.out.println("Pattern found at : " + i);
                 return true;
             }
         }
         return false;
     }
+
     public static void main(String[] args) {
         String text = "abcdabcabcdf";
         String pattern = "abc";
-        System.out.println(algo(text,pattern));
+        System.out.println(algo(text, pattern));
     }
 }

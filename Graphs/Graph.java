@@ -1,8 +1,9 @@
 package Graphs;
+
 import java.util.*;
 
 public class Graph {
-    private Map<Integer, List<Integer>> adjList;
+    private static Map<Integer, List<Integer>> adjList;
 
     public Graph() {
         adjList = new HashMap<>();
@@ -40,6 +41,52 @@ public class Graph {
         }
     }
 
+    // bfs
+    public static void bfs(int start) {
+        Set<Integer> visisted = new HashSet<>();
+        Queue<Integer> q = new LinkedList<>();
+
+        visisted.add(start);
+        q.add(start);
+
+        while (!q.isEmpty()) {
+            int vertex = q.poll();
+            System.out.print(start + " ");
+            for (int neighbor : adjList.get(vertex)) {
+                if (!visisted.contains(neighbor)) {
+                    visisted.add(neighbor);
+                    q.add(neighbor);
+                }
+            }
+        }
+    }
+
+    // Topological Sort
+    public static List<Integer> topologicalSort() {
+        Set<Integer> visited = new HashSet<>();
+        Stack<Integer> stack = new Stack<>();
+        for (Integer vertex : adjList.keySet()) {
+            if (!visited.contains(vertex)) {
+                topologicalSortUtil(vertex, visited, stack);
+            }
+        }
+        List<Integer> sortedList = new ArrayList<>();
+        while (!stack.isEmpty()) {
+            sortedList.add(stack.pop());
+        }
+        return sortedList;
+    }
+
+    private static void topologicalSortUtil(int vertex, Set<Integer> visited, Stack<Integer> stack) {
+        visited.add(vertex);
+        for (Integer neighbor : adjList.get(vertex)) {
+            if (!visited.contains(neighbor)) {
+                topologicalSortUtil(neighbor, visited, stack);
+            }
+        }
+        stack.push(vertex);
+    }
+
     public static void main(String[] args) {
         Graph graph = new Graph();
 
@@ -58,5 +105,7 @@ public class Graph {
         // Perform DFS starting from vertex 1
         System.out.println("Depth-First Search starting from vertex 1:");
         graph.dfs(1);
+
+        System.out.println("Topological Sort : " + topologicalSort());
     }
 }
